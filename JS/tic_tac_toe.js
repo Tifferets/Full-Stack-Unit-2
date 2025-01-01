@@ -48,6 +48,10 @@ function handleCellClick(event) {
   // Update the board and UI
   board[cellIndex] = currentPlayer;
   event.target.textContent = currentPlayer;
+
+  // Set the data-player attribute for styling
+  event.target.dataset.player = currentPlayer;
+
   event.target.classList.add("taken");
 
   // Check for a win or draw

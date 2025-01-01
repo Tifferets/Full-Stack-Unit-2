@@ -42,8 +42,16 @@
     font-size: 16px;
   }
   
-  .nav-links a:hover {
+  .nav-links a:hover, button:hover {
     text-decoration: underline;
+  }
+
+  .nav-links button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
   }
   
   .search-bar input {

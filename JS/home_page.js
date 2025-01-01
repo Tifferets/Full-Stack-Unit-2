@@ -1,5 +1,26 @@
 // Mock database for users
-const users = {};
+const users = {
+  CoolGamer: {
+    email: "coolgamer@example.com",
+    password: "password123",
+  },
+  AcePlayer: {
+    email: "aceplayer@example.com",
+    password: "winning2023",
+  },
+  ShadowNinja: {
+    email: "shadowninja@example.com",
+    password: "stealthmode",
+  },
+  PixelQueen: {
+    email: "pixelqueen@example.com",
+    password: "sparkle567",
+  },
+  EMN: {
+    email: "emnusbacher@gmail.com",
+    password: "123456",
+  },
+};
 const failedAttempts = {}; // Tracks failed login attempts for each user
 const blockedUsers = {}; // Tracks blocked users with their unblocking time
 
@@ -54,7 +75,7 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
     // Redirect to the game page
     setTimeout(() => {
         window.location.href = "../HTML/game_page.html"; // Replace with the actual path to your game page
-    }, 2000); // Redirect after 2 seconds
+    }, 1000); // Redirect after 2 seconds
 } else if (users[nickname]) {
     // Increment failed attempts
     failedAttempts[nickname] = (failedAttempts[nickname] || 0) + 1;
@@ -98,7 +119,6 @@ document.getElementById("register-form").addEventListener("submit", function (e)
       users[nickname] = {
         email: email,
         password: password,
-        confirmPassword: confirmPassword,
       };
   
       document.getElementById("register-message").textContent = "Registration successful! You can now log in.";
