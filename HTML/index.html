@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cube Factory - Login</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">GAHZLY PLAY</div>
+    </nav>
+
+    <div class="container">
+
+        <h3>The Game Hub</h3>
+        <h1>Welcome back</h1>
+        <p>Please enter your details</p>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+    
+            <button type="submit" class="btn">Sign in</button>
+
+            <p>Don't have an account? <a href="./register.html">Sign up</a></p>
+        </form>
+        <p id="login-message"></p>
+    </div>
+
+    <script type="module" src="../JS/script.js"></script>
+</body>
+</html>

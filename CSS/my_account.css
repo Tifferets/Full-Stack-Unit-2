@@ -1,0 +1,14 @@
+.user-data p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+  
+.user-data p::before {
+  content: attr(data-label);
+  font-weight: bold;
+  color: #3f51b5; 
+}
+
+.user-data p span {
+  display: none;
+}

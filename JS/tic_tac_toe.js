@@ -1,3 +1,6 @@
+// Import user data functions from users.js
+import { updateUser, searchUser } from './users.js';
+
 // Game state variables
 let board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
@@ -16,15 +19,18 @@ const winningCombinations = [
 ];
 
 // DOM Elements
+const username = sessionStorage.getItem('username');
 const boardElement = document.getElementById("board");
 const statusElement = document.getElementById("status");
 const resetButton = document.getElementById("reset");
 const progressFillElement = document.getElementById("progress-fill");
 const progressTextElement = document.getElementById("progress-text");
-
+let userData;
 
 // Initialize the game board
-function createBoard() {
+async function createBoard() {
+  userData = await searchUser(username); // Load user data before creating board
+  console.log(userData);
   boardElement.innerHTML = ""; // Clear the board
   board.forEach((cell, index) => {
     const cellElement = document.createElement("div");
@@ -48,38 +54,78 @@ function handleCellClick(event) {
   // Update the board and UI
   board[cellIndex] = currentPlayer;
   event.target.textContent = currentPlayer;
-
-  // Set the data-player attribute for styling
   event.target.dataset.player = currentPlayer;
-
   event.target.classList.add("taken");
 
   // Check for a win or draw
   if (checkWin()) {
     handleWin();
   } else if (board.every(cell => cell !== "")) {
-    highlightDraw();
-    statusElement.textContent = "It's a draw!";
-    gameActive = false;
-    // Update the progress bar
-   updateProgressBar();
+    handleDraw();
   } else {
     // Switch players
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusElement.innerHTML = `Player <span class="player-${currentPlayer.toLowerCase()}">${currentPlayer}</span>'s turn`;
-    // Update the progress bar
     updateProgressBar();
   }
 
 }
 
 // Handle win
-function handleWin() {
+async function handleWin() {
   highlightWinningCells();
   statusElement.innerHTML = `<span class="winning-message">Player ${currentPlayer} wins!</span>`;
   progressFillElement.style.width = "100%"; // Progress bar goes to 100%
   progressTextElement.textContent = "100%"; // Update progress text
   gameActive = false;
+
+  // Track wins
+  const updatedWins = userData.activities["Tic Tac Toe"].wins + 1;
+  const updatedPlayed = userData.activities["Tic Tac Toe"].played + 1;
+  await updateUser(username, { 
+    activities: {
+      "Tic Tac Toe": {
+        wins: updatedWins,
+        played: updatedPlayed
+      }
+    }
+});
+
+  // Check for achievement
+  const winRate = userData.activities["Tic Tac Toe"].wins / userData.activities["Tic Tac Toe"].played;
+  if (winRate >= 0.75 && !userData.achievements.includes("Tic Tac Toe Master")) {
+    const updatedachievements = userData.achievements + "Tic Tac Toe Master";
+    
+    await updateUser(username, { achievements: updatedachievements});
+    alert("Congratulations! You've unlocked the 'Tic Tac Toe Master' achievement!");
+  }
+}
+
+// Handle draw
+async function handleDraw() {
+  highlightDraw();
+  statusElement.textContent = "It's a draw!";
+  gameActive = false;
+  updateProgressBar();
+
+  // Update played games
+  const updatedPlayed = userData.activities["Tic Tac Toe"].played + 1;
+  await updateUser(username, { 
+    activities: {
+      "Tic Tac Toe": {
+        played: updatedPlayed
+      }
+    }
+});
+
+
+  // Remove "Tic Tac Toe Master" achievement if win rate falls below 0.75
+  if (userData.activities["Tic Tac Toe"].wins / userData.activities["Tic Tac Toe"].played <= 0.75 && 
+    userData.achievements.includes("Tic Tac Toe Master")) {
+    const updatedAchievements = userData.achievements.filter(achievement => achievement !== "Tic Tac Toe Master");
+    updateUser(username, { achievements: updatedAchievements }); 
+    
+  }
 }
 
 // Check for a win
