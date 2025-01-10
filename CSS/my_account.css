@@ -1,14 +1,35 @@
-.user-data p {
-  font-size: 16px;
-  line-height: 1.5;
-}
-  
-.user-data p::before {
-  content: attr(data-label);
-  font-weight: bold;
-  color: #3f51b5; 
-}
 
-.user-data p span {
-  display: none;
-}
+  /* Navigation Bar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+
+ 
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .nav-links button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
