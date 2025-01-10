@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+}
+
+.game-container {
+    text-align: center;
+}
+
+.game-area {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    background-color: #87ceeb;
+    border: 2px solid #000;
+    margin-top: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.basket {
+    position: absolute;
+    bottom: 20px;
+    width: 50px;
+    height: 30px;
+    background-color: #ff4500;
+}
+
+.falling-object {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #32cd32;
+    border-radius: 50%;
+}
