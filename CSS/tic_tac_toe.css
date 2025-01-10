@@ -2,7 +2,8 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #3e260e; /* Dark wood color */
+  background: url('../IMG/wood_texture.png'); 
+  background-size: cover; 
   color: #fff; /* Text color for contrast */
   margin: 0;
   padding: 0;
@@ -62,8 +63,8 @@ h1 {
   align-items: center;
   margin-top: 20px;
   padding: 20px;
-  background: url('../IMG/wood_texture.png'); 
-  background-size: cover; 
+  /* background: url('../IMG/wood_texture.png');  */
+  /* background-size: cover;  */
   /* background: #8b4513;  */
   border: 5px solid #5e3200; /* Darker border for depth */
   border-radius: 15px;
@@ -205,3 +206,22 @@ h1 {
   font-size: 1rem;
   font-weight: bold;
 }
+
+/* Leader Board*/
+.leaderboard-container {
+  margin-top: 20px;
+}
+
+.leaderboard-container h2 {
+  font-size: 1.5em;
+}
+
+#leaderboard {
+  list-style-type: none;
+  padding: 0;
+}
+
+#leaderboard li {
+  padding: 5px 0;
+}
+

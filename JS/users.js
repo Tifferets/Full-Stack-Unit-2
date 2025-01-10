@@ -70,3 +70,37 @@ export async function searchUser(username) {
     const data = await loadUserData();
     return data.users[username] || null; // Return user or null if not found
 }
+
+
+// Fetch and display the leaderboard for a specific game
+export async function displayLeaderboard(gameName) {
+    const allUsers = await loadUserData(); // Assume a function to fetch all user data
+    const leaderboardData = [];
+  
+    // Calculate the total wins for each user in the specified game
+    for (const user of Object.values(allUsers)) {
+      if (user.activities && user.activities[gameName]) {
+        leaderboardData.push({
+          username: user.username,
+          wins: user.activities[gameName].wins,
+        });
+      }
+    }
+  
+    // Sort by wins in descending order
+    leaderboardData.sort((a, b) => b.wins - a.wins);
+  
+    // Display the top players for the specified game
+    const leaderboardElement = document.getElementById("leaderboard");
+    leaderboardElement.innerHTML = ""; // Clear the leaderboard
+    if (leaderboardData.length > 0) {
+      leaderboardData.forEach((player, index) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${index + 1}. ${player.username} - ${player.wins} wins`;
+        leaderboardElement.appendChild(listItem);
+      });
+    } else {
+      leaderboardElement.innerHTML = `<li>No players for ${gameName} yet!</li>`;
+    }
+  }
+  

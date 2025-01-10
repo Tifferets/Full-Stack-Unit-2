@@ -16,12 +16,14 @@ async function displayUserData() {
     if (userData) {
       const userSection = document.createElement('div');
       userSection.classList.add('user-data'); // Add a class for styling
+      const formattedLastLogin = userData.lastLogin ? formatDate(new Date(userData.lastLogin)) : 'Not available';
+
       userSection.innerHTML = `
         <h2>User Information</h2>
         <p>Username: ${userData.username}</p>
         <p>Email: ${userData.email}</p>
         <p>Login Times: ${userData.loginTimes}</p>
-        <p>Last Login: ${userData.lastLogin}</p>
+        <p>Last Login: ${formattedLastLogin}</p>
         <h3>Game Activities:</h3>
         <ul>
           <li>Tic Tac Toe: Wins: ${userData.activities["Tic Tac Toe"].wins}, Played: ${userData.activities["Tic Tac Toe"].played}</li>
@@ -47,6 +49,18 @@ async function displayUserData() {
     const container = document.querySelector('.container');
     container.innerHTML += "<p>Error loading user data. Please try again later.</p>";
   }
+}
+
+// Function to format the date in dd/mm/yyyy HH:MM:SS format
+function formatDate(date) {
+
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
 displayUserData();

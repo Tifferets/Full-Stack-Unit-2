@@ -35,7 +35,7 @@ loginForm.addEventListener('submit', async (event) => {
   if (user.password === password) {
     // Reset login times and update last login
     const updatedLoginTimes = user.loginTimes + 1;
-    await updateUser(username, { loginTimes: updatedLoginTimes, lastLogin: new Date().toISOString() });
+    await updateUser(username, { loginTimes: updatedLoginTimes, lastLogin: new Date() });
 
     // Set a session cookie for authentication
     document.cookie = `user=${username}; path=/; max-age=1800`;

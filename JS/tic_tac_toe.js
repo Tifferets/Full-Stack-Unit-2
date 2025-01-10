@@ -1,5 +1,5 @@
 // Import user data functions from users.js
-import { updateUser, searchUser } from './users.js';
+import { updateUser, searchUser, displayLeaderboard } from './users.js';
 
 // Game state variables
 let board = ["", "", "", "", "", "", "", "", ""];
@@ -32,14 +32,16 @@ async function createBoard() {
   userData = await searchUser(username); // Load user data before creating board
   console.log(userData);
   boardElement.innerHTML = ""; // Clear the board
-  board.forEach((cell, index) => {
+ 
+  for (let i = 0; i < 9; i++) {
     const cellElement = document.createElement("div");
     cellElement.classList.add("cell");
-    cellElement.dataset.index = index;
+    cellElement.dataset.index = i; 
     cellElement.addEventListener("click", handleCellClick);
     boardElement.appendChild(cellElement);
-  });
+  }
   updateProgressBar(); // Reset the progress bar
+  await displayLeaderboard("Tic Tac Toe"); // Display the leaderboard
 }
 
 // Handle cell click
@@ -84,6 +86,7 @@ async function handleWin() {
   const updatedPlayed = userData.activities["Tic Tac Toe"].played + 1;
   await updateUser(username, { 
     activities: {
+      ...userData.activities,
       "Tic Tac Toe": {
         wins: updatedWins,
         played: updatedPlayed
@@ -93,10 +96,11 @@ async function handleWin() {
 
   // Check for achievement
   const winRate = userData.activities["Tic Tac Toe"].wins / userData.activities["Tic Tac Toe"].played;
-  if (winRate >= 0.75 && !userData.achievements.includes("Tic Tac Toe Master")) {
-    const updatedachievements = userData.achievements + "Tic Tac Toe Master";
-    
-    await updateUser(username, { achievements: updatedachievements});
+  if (userData.activities["Tic Tac Toe"].played >=10 && 
+    winRate >= 0.75 && !userData.achievements.includes("Tic Tac Toe Master")
+  ) {
+    const updatedAchievements = [...userData.achievements, "Tic Tac Toe Master"]; 
+    await updateUser(username, { achievements: updatedAchievements});
     alert("Congratulations! You've unlocked the 'Tic Tac Toe Master' achievement!");
   }
 }
@@ -110,20 +114,24 @@ async function handleDraw() {
 
   // Update played games
   const updatedPlayed = userData.activities["Tic Tac Toe"].played + 1;
+  const ticTacToeActivity = { ...userData.activities["Tic Tac Toe"], played: updatedPlayed };
+
   await updateUser(username, { 
     activities: {
-      "Tic Tac Toe": {
-        played: updatedPlayed
-      }
+      ...userData.activities,
+      "Tic Tac Toe": ticTacToeActivity
     }
-});
+ });
 
 
   // Remove "Tic Tac Toe Master" achievement if win rate falls below 0.75
   if (userData.activities["Tic Tac Toe"].wins / userData.activities["Tic Tac Toe"].played <= 0.75 && 
-    userData.achievements.includes("Tic Tac Toe Master")) {
+    userData.achievements.includes("Tic Tac Toe Master")
+  ) {
     const updatedAchievements = userData.achievements.filter(achievement => achievement !== "Tic Tac Toe Master");
-    updateUser(username, { achievements: updatedAchievements }); 
+    await updateUser(username, { achievements: updatedAchievements }); 
+    alert("Oh no! Your win rate has dropped. The 'Tic Tac Toe Master' achievement has been withdrawn. Keep playing to earn it back!");
+
     
   }
 }
@@ -172,6 +180,7 @@ function resetGame() {
   statusElement.innerHTML = "Player <span class='player-x'>X</span>'s turn";
   createBoard();
 }
+
 
 // Event listeners
 resetButton.addEventListener("click", resetGame);

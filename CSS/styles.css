@@ -10,6 +10,19 @@ body {
   background-size: cover; 
   background-position: center center; 
   background-repeat: no-repeat;
+  animation: changeBackground 40s infinite;
+}
+
+@keyframes changeBackground {
+  0% { background-image: url('../IMG/game-background1.png'); }
+  15% { background-image: url('../IMG/game-background1.png'); } /* hold image for 15%*/
+  25% { background-image: url('../IMG/game-background2.png'); }
+  40% { background-image: url('../IMG/game-background2.png'); }
+  50% { background-image: url('../IMG/game-background3.jpg'); }
+  65% { background-image: url('../IMG/game-background3.jpg'); }
+  75% { background-image: url('../IMG/game-background4.jpg'); }
+  90% { background-image: url('../IMG/game-background4.jpg'); }
+  100% { background-image: url('../IMG/game-background1.png'); } /* Loop back to the first image */
 }
 
   /* Navigation Bar */
@@ -33,7 +46,7 @@ body {
   background-color: #fff;
   padding: 20px 45px 40px 45px;
   border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   text-align: left;
   width: 400px; /* Set the width */
   height: auto; /* Allow height to adjust based on content */
@@ -77,7 +90,8 @@ input[type="password"] {
   border-radius: 3px;
   cursor: pointer;
   width: 100%; 
-  
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 
