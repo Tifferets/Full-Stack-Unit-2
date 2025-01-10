@@ -29,7 +29,7 @@ body {
   .navbar {
     display: flex;
     background-color: #222;
-    padding: 15px 50px;
+    padding: 12px 50px;
     color: #fff;
     position: fixed; 
     top: 0; 
