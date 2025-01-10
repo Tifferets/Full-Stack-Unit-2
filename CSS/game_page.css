@@ -41,14 +41,6 @@
     text-decoration: none;
     font-size: 16px;
   }
-
-
-
-  /* .nav-links img{
-    width: 5px; 
-    height: 5px;
-    margin-right: 5px;
-  } */
   
   .nav-links a:hover, button:hover {
     text-decoration: underline;
@@ -72,11 +64,12 @@
   
 /* Game Grid Styles */
 .game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 20px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px); /* Fixed size for each item */
+  gap: 30px;
+  padding: 20px;
+  justify-content: center; /* Center the grid items */
+}
   
   /* Game Card Styles */
   .game-card {
