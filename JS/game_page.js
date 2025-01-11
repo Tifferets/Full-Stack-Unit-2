@@ -6,7 +6,8 @@ const searchBar = document.getElementById("search-bar");
 const gameCards = document.querySelectorAll(".game-card");
 
 const ticTacToeCard = document.getElementById("tic-tac-toe");
-const rockPaperScissorsCard = document.getElementById("falling-ball");
+const fallingBallCard = document.getElementById("falling-ball");
+
 
 
 // Sort game cards alphabetically when "A-Z" is clicked
@@ -48,7 +49,8 @@ ticTacToeCard.addEventListener("click", () => {
   window.location.href = "../HTML/tic_tac_toe.html"; 
 });
 
-// Redirect to the rock paper scissors page when the card is clicked
-rockPaperScissorsCard.addEventListener("click", () => {
-  window.location.href = "../HTML/falling_ball.html"; 
+// Redirect to the falling ball page when the card is clicked
+fallingBallCard.addEventListener("click", () => {
+  console.log("pressed");
+  window.location.href = "falling_ball.html"; 
 });

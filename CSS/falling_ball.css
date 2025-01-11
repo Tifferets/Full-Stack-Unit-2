@@ -89,6 +89,21 @@ body {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: #32cd32;
-    border-radius: 50%;
+    background-color: #ff4d00; /* Red apple color */
+    border-radius: 50%; /* Make it circular */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adding some shadow for depth */
+    transform: rotate(10deg); /* Slight tilt to make it look more natural */
+    border: #000 1px;;
 }
+
+.falling-object::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 6px;
+    height: 10px;
+    background-color: #228B22; /* Green for the leaf */
+    transform: translateX(-50%) rotate(45deg); /* Position it on top like a leaf */
+}
+
