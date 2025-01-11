@@ -74,11 +74,12 @@ export async function searchUser(username) {
 
 // Fetch and display the leaderboard for a specific game
 export async function displayLeaderboard(gameName) {
-    const allUsers = await loadUserData(); // Assume a function to fetch all user data
+    const allUsers = await loadUserData(); 
+    console.log("Loaded Users:", allUsers);
     const leaderboardData = [];
   
     // Calculate the total wins for each user in the specified game
-    for (const user of Object.values(allUsers)) {
+    for (const user of Object.values(allUsers.users)) {
       if (user.activities && user.activities[gameName]) {
         leaderboardData.push({
           username: user.username,
@@ -92,15 +93,12 @@ export async function displayLeaderboard(gameName) {
   
     // Display the top players for the specified game
     const leaderboardElement = document.getElementById("leaderboard");
+    console.log("Leaderboard Element:", leaderboardElement);
     leaderboardElement.innerHTML = ""; // Clear the leaderboard
-    if (leaderboardData.length > 0) {
-      leaderboardData.forEach((player, index) => {
+
+    leaderboardData.slice(0, 3).forEach((player, index) => {  // Limit to top 3
         const listItem = document.createElement("li");
         listItem.textContent = `${index + 1}. ${player.username} - ${player.wins} wins`;
         leaderboardElement.appendChild(listItem);
-      });
-    } else {
-      leaderboardElement.innerHTML = `<li>No players for ${gameName} yet!</li>`;
-    }
-  }
-  
+        });
+}

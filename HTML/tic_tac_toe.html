@@ -10,15 +10,28 @@
   
   <nav class="navbar">
     <div class="logo">GAHZLY PLAY</div>
+
+    <div class="leaderboard-container">  <!-- Dropdown container for the top 3 leaders -->
+      LeaderBoard
+      <div class="dropdown-content">  
+        <ul id="leaderboard">
+          <li>1. Player A - 1500 points</li>
+          <li>2. Player B - 1200 points</li>
+          <li>3. Player C - 1000 points</li>
+        </ul>
+      </div>
+    </div>
+
     <ul class="nav-links">
       <li><a href="./my_account.html">My Account</a></li>
       <li><a href="./game_page.html">Back</a></li>
     </ul>
   </nav>
 
-  <h1>Tic Tac Toe</h1>
   <div class="game-container">
+    <h1>Tic Tac Toe</h1>
     <div id="board"></div>
+
     <div class="game-info">
       <p id="status">Player X's turn</p>
       <div class="progress-container">
@@ -31,10 +44,6 @@
     </div>
   </div>
 
-  <div class="leaderboard-container">
-    <h2>Leaderboard</h2>
-    <ul id="leaderboard"></ul>
-  </div>
   
   <script type="module" src="../JS/tic_tac_toe.js"></script>
 </body>
