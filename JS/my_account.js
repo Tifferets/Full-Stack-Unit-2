@@ -27,7 +27,7 @@ async function displayUserData() {
         <h3>Game Activities:</h3>
         <ul>
           <li>Tic Tac Toe: Wins: ${userData.activities["Tic Tac Toe"].wins}, Played: ${userData.activities["Tic Tac Toe"].played}</li>
-          <li>Rock Paper Scissors: Wins: ${userData.activities["Rock Paper Scissors"].wins}, Played: ${userData.activities["Rock Paper Scissors"].played}</li>
+          <li>Falling Ball: Wins: ${userData.activities["Rock Paper Scissors"].wins}, Played: ${userData.activities["Rock Paper Scissors"].played}</li>
         </ul>
         <h3>Achievements:</h3>
         <ul>

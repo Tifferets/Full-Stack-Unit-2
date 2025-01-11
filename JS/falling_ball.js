@@ -1,3 +1,6 @@
+// Import user data functions from users.js
+import { updateUser, searchUser, displayLeaderboard } from './users.js';
+
 const basket = document.getElementById("basket");
 const fallingObject = document.getElementById("fallingObject");
 const scoreElement = document.getElementById("score");
@@ -66,8 +69,19 @@ function startGame() {
 
 function stopGame() {
     clearInterval(objectInterval);
-    alert("Game Over! Your score: " + score);
+    
     isGameOver = true;
 }
+// Reset the game
+function resetGame() {
+    console.log("9999");
+    stopGame();
+    scoreElement.innerHTML= "<span id='score'>0</span> ";
+    startGame();
+  }
+  
+  
+  // Event listeners
+  resetButton.addEventListener("click", resetGame);
 
 startGame();
