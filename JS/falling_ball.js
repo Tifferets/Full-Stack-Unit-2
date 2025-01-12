@@ -1,5 +1,5 @@
 // Import user data functions from users.js
-import { updateUser, searchUser, displayLeaderboard } from './users.js';
+import { updateUser, searchUser, displayLeaderboard} from './users.js';
 
 const basket = document.getElementById("basket");
 const fallingObject = document.getElementById("fallingObject");
@@ -61,10 +61,11 @@ function moveBasket(event) {
     basket.style.left = basketPosition + "px";
 }
 
-function startGame() {
+async function startGame() {
     resetObject();
     objectInterval = setInterval(moveObject, 20);
     document.addEventListener("keydown", moveBasket);
+    await displayLeaderboard("Falling Ball"); // Display the leaderboard
 }
 
 function stopGame() {

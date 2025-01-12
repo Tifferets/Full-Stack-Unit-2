@@ -3,88 +3,9 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #000; 
-  background-size: cover;  
   color: #fff; /* Text color for contrast */
-  margin: 0;
-  padding: 0;
+  padding-top: 58px; 
 }
-
-/* Navigation Bar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #222;
-  padding: 10px 20px;
-  color: #fff;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.nav-links{
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links li {
-  display: inline;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-/* Leaderboard container styles */
-.leaderboard-container {
-  position: relative; /* This allows us to position the dropdown relative to this container */
-}
-
-.leaderboard-container a {
-    color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-/* Style for the dropdown content */
-.dropdown-content {
-  display: none; /* Hidden by default */
-  position: absolute;
-  background-color: #444;
-  color: white;
-  min-width: 150px;
-  border-radius: 5px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  top: 100%; /* Position below the leaderboard item */
-  left: 0;
-  padding: 10px;
-}
-
-/* Display the dropdown when hovering over the leaderboard */
-.leaderboard-container:hover .dropdown-content {
-  display: block;
-}
-
-/* Dropdown list styling */
-.dropdown-content ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dropdown-content li {
-  padding: 5px 0;
-}
-
 
 h1 {
   margin-top: 20px;
@@ -100,18 +21,15 @@ h1 {
   background: url('../IMG/wood_texture.png'); 
   background-size: cover; 
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Add depth */
-  padding: 20px;
-  /* max-width: 1000px;  */
   margin: 0 12%;
-
+  min-height: 92vh;
 }
 
 #board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 10px; /* Small spacing between cells */
-  /* background: url('../IMG/wood_texture.png');  */
+  gap: 12px; 
   padding: 8px;
   border-radius: 10px;
 }
@@ -125,7 +43,6 @@ h1 {
   font-size: 4rem;
   font-weight: bold;
   color: #fff; /* Default text color */
-  /* background: #8b4513;  */
   border: 2px solid #5e3200; /* Darker border for the cells */
   box-shadow: inset 1.5px 3px 5px 1.5px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
   cursor: pointer;
@@ -240,21 +157,7 @@ h1 {
   font-weight: bold;
 }
 
-/* Leader Board*/
-.leaderboard-container {
-  margin-top: 20px;
-}
 
-.leaderboard-container h2 {
-  font-size: 1.5em;
-}
 
-#leaderboard {
-  list-style-type: none;
-  padding: 0;
-}
 
-#leaderboard li {
-  padding: 5px 0;
-}
 
