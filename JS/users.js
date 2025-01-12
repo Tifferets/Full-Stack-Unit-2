@@ -102,5 +102,20 @@ export async function displayLeaderboard(gameName) {
         const listItem = document.createElement("li");
         listItem.textContent = `${index + 1}. ${player.username} - ${player.wins} wins`;
         leaderboardElement.appendChild(listItem);
-        });
+    });
 }
+
+// Show a message on the screen
+export function showNotification(message, type = "success") {
+    const notification = document.getElementById("notification");
+    notification.textContent = message;
+  
+    // Apply the type of notification (success or error)
+    notification.className = `notification show ${type === "error" ? "error" : ""}`;
+  
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 3000);
+  }
+  

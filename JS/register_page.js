@@ -27,7 +27,8 @@ registerForm.addEventListener('submit', async (event) => {
 
   // Check if username already exists
   const userExists = await searchUser(username);
-  if (userExists) {
+  console.log(userExists);
+  if (userExists != null) {
     registerMessage.textContent = 'Username already exists. Please choose another.';
     registerMessage.style.color = 'red';
     return;
