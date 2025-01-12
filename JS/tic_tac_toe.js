@@ -1,5 +1,5 @@
 // Import user data functions from users.js
-import { updateUser, searchUser, displayLeaderboard } from './users.js';
+import { updateUser, searchUser, displayLeaderboard, showNotification } from './users.js';
 
 // Game state variables
 let board = ["", "", "", "", "", "", "", "", ""];
@@ -101,8 +101,8 @@ async function handleWin() {
   ) {
     const updatedAchievements = [...userData.achievements, "Tic Tac Toe Master"]; 
     await updateUser(username, { achievements: updatedAchievements});
-    alert("Congratulations! You've unlocked the 'Tic Tac Toe Master' achievement!");
-  }
+    showNotification("Congratulations! You've unlocked the 'Tic Tac Toe Master' achievement!");
+ }
 }
 
 // Handle draw
@@ -130,7 +130,7 @@ async function handleDraw() {
   ) {
     const updatedAchievements = userData.achievements.filter(achievement => achievement !== "Tic Tac Toe Master");
     await updateUser(username, { achievements: updatedAchievements }); 
-    alert("Oh no! Your win rate has dropped. The 'Tic Tac Toe Master' achievement has been withdrawn. Keep playing to earn it back!");
+    showNotification("Oh no! Your win rate has dropped. The 'Tic Tac Toe Master' achievement has been withdrawn. Keep playing to earn it back!", "error");
 
     
   }
