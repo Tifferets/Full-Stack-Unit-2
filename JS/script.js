@@ -29,13 +29,17 @@ loginForm.addEventListener('submit', async (event) => {
     loginMessage.textContent = `User blocked. Try again in ${remainingTime} minutes.`;
     loginMessage.style.color = 'red';
     return;
+  }else if(blockedUntil != null){
+    user.failedAttempts = 0;
+    user.blockedUntil = null;
+    await updateUser(username, user);
   }
 
   // Validate login credentials
   if (user.password === password) {
     // Reset login times and update last login
     const updatedLoginTimes = user.loginTimes + 1;
-    await updateUser(username, { loginTimes: updatedLoginTimes, lastLogin: new Date() });
+    await updateUser(username, { loginTimes: updatedLoginTimes, lastLogin: new Date(), failedAttempts: 0, blockedUntil: null });
 
     // Set a session cookie for authentication
     document.cookie = `user=${username}; path=/; max-age=1800`;

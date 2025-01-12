@@ -32,6 +32,8 @@ export async function addUser(username, email, password) {
         password: password,
         loginTimes: 0,
         lastLogin: null,
+        failedAttempts: 0,
+        blockedUntil: null,
         activities: {
             "Tic Tac Toe": {
                 wins: 0,
