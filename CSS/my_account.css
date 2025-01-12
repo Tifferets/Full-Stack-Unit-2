@@ -1,35 +1,56 @@
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+}
 
-  /* Navigation Bar */
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #222;
-    padding: 10px 20px;
-    color: #fff;
-  }
-  
-  .logo {
-    font-size: 20px;
-    font-weight: bold;
-  }
+h1{
+text-align: center;
+}
+
+.user-data h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.user-data p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.user-data h3 {
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+
+/* Styling the game activity list */
+.user-data ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Styling for achievements */
+.user-data ul li {
+  font-size: 1rem;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #90a0f7;
+}
+
+.user-data ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
 
 
- 
-  a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
+.user-data p {
+  text-align: center;
+  font-size: 1rem;
+  color: #aaa;
+}
 
-  .nav-links button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-  }
+
+
+
+

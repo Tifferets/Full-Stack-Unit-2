@@ -72,6 +72,7 @@ function startGame() {
     isGameOver = false; // Reset game over flag
     objectInterval = setInterval(moveObject, 20);
     document.addEventListener("keydown", moveBasket);
+    await displayLeaderboard("Falling Ball"); // Display the leaderboard
 }
 
 function stopGame() {

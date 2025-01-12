@@ -37,7 +37,7 @@ export async function addUser(username, email, password) {
                 wins: 0,
                 played: 0
             },
-            "Rock Paper Scissors": {
+            "Falling Ball": {
                 wins: 0,
                 played: 0
             },

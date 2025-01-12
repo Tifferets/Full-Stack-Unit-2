@@ -60,5 +60,6 @@ loginForm.addEventListener('submit', async (event) => {
     }
 
     await updateUser(username, updates);
+
   }
 });
