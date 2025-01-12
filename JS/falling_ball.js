@@ -7,6 +7,10 @@ const fallingObject = document.getElementById("fallingObject");
 const scoreElement = document.getElementById("score");
 const resetButton = document.getElementById("resetButton"); // Get the reset button
 const gameOverMessage = document.getElementById("gameOverMessage"); // Get the game over message div
+const infoButton = document.getElementById("infoButton");
+const infoPopup = document.getElementById("infoPopup");
+const closePopup = document.getElementById("closePopup");
+
 let userData;
 
 let score = 0;
@@ -149,8 +153,26 @@ function resetGame() {
     startGame(); // Start a new game
 }
 
+// Open the popup
+infoButton.addEventListener("click", () => {
+  infoPopup.style.display = "flex";
+});
+
+
 // Add event listener to reset button
 resetButton.addEventListener("click", resetGame);
+// Close the popup
+closePopup.addEventListener("click", () => {
+  infoPopup.style.display = "none";
+});
+
+// Close the popup when clicking outside the content
+window.addEventListener("click", (event) => {
+  if (event.target === infoPopup) {
+      infoPopup.style.display = "none";
+  }
+});
+
 
 // Start the game initially
 startGame();

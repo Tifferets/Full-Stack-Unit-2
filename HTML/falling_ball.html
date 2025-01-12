@@ -35,10 +35,31 @@
             <div id="basket" class="basket"></div>
             <div id="fallingObject" class="falling-object"></div>
         </div>
-        <div>
+        <div class="controls">
             <button id="resetButton">Reset Game</button>
+            <button id="infoButton">ℹ️ </button>
         </div>
     </div>
+
+            <!-- Popup -->
+    <div id="infoPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-button" id="closePopup">&times;</span>
+            <h2>How to Play</h2>
+            <p>
+                Welcome to the Falling Ball game! Your goal is to catch as many falling objects as possible with the basket.
+            </p>
+            <ul>
+                <li>Move the basket left or right using the arrow keys or "A" and "D".</li>
+                <li>Each successful catch increases your score by 1.</li>
+                <li>The falling object speed increases every 5 points.</li>
+                <li>If the object hits the ground, the game is over.</li>
+                <li>Try to achieve the "Falling Ball Master" achievement!</li>
+            </ul>
+            <p>Good luck and have fun!</p>
+        </div>
+    </div>
+
 
     <script type="module" src="../JS/falling_ball.js"></script>
 </body>
