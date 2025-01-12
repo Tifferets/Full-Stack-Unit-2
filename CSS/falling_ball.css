@@ -36,7 +36,7 @@ body {
     background-color: #ff4500;
 }
 
-#reset {
+#resetButton {
     padding: 8px 20px;
     font-size: 1.1rem;
     cursor: pointer;
@@ -67,3 +67,9 @@ body {
     transform: translateX(-50%) rotate(45deg); /* Position it on top like a leaf */
 }
 
+#gameOverMessage{
+    display: none;
+    color: black; 
+    font-size: 24px; 
+    font-weight: bold;
+}
