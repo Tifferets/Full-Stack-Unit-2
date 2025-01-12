@@ -1,17 +1,14 @@
-// Import user data functions from users.js
-import { updateUser, searchUser, displayLeaderboard } from './users.js';
-
 const basket = document.getElementById("basket");
 const fallingObject = document.getElementById("fallingObject");
 const scoreElement = document.getElementById("score");
+const resetButton = document.getElementById("resetButton"); // Get the reset button
+const gameOverMessage = document.getElementById("gameOverMessage"); // Get the game over message div
 
 let score = 0;
 let objectSpeed = 3;
 let objectInterval;
-let isGameOver = false;
-
-// Set initial position of the basket
 let basketPosition = 125; // Starts at the middle of the game area
+let isGameOver = false;  // Flag to check if the game is over
 
 function resetObject() {
     const randomX = Math.floor(Math.random() * 270); // Random X position (within the game area)
@@ -21,11 +18,15 @@ function resetObject() {
 
 function moveObject() {
     const objectTop = parseInt(fallingObject.style.top);
-    if (objectTop > 500) { // If the object goes out of the game area
-        resetObject();
-    } else {
-        fallingObject.style.top = objectTop + objectSpeed + 'px';
+
+    if (objectTop > 500) { // If the object goes out of the game area (falls past the bottom)
+        stopGame(); // Stop the game
+        gameOverMessage.style.display = 'block'; // Show the game over message
+        gameOverMessage.textContent = `Game Over! Your score: ${score}`; // Update the game over message
+        return; // Exit the function, no further actions needed
     }
+
+    fallingObject.style.top = objectTop + objectSpeed + 'px';
 
     const objectX = parseInt(fallingObject.style.left);
     const objectY = parseInt(fallingObject.style.top);
@@ -62,26 +63,31 @@ function moveBasket(event) {
 }
 
 function startGame() {
+    score = 0; // Reset score
+    objectSpeed = 3; // Reset object speed
+    basketPosition = 125; // Reset basket position
+    scoreElement.textContent = score;
     resetObject();
+    gameOverMessage.style.display = 'none'; // Hide the game over message
+    isGameOver = false; // Reset game over flag
     objectInterval = setInterval(moveObject, 20);
     document.addEventListener("keydown", moveBasket);
 }
 
 function stopGame() {
     clearInterval(objectInterval);
-    
-    isGameOver = true;
+    isGameOver = true; // Set game over flag to true
 }
+
 // Reset the game
 function resetGame() {
-    console.log("9999");
-    stopGame();
-    scoreElement.innerHTML= "<span id='score'>0</span> ";
-    startGame();
-  }
-  
-  
-  // Event listeners
-  resetButton.addEventListener("click", resetGame);
+    if (!isGameOver) return; // Only reset if the game is over
+    stopGame(); // Stop the current game
+    startGame(); // Start a new game
+}
 
+// Add event listener to reset button
+resetButton.addEventListener("click", resetGame);
+
+// Start the game initially
 startGame();
