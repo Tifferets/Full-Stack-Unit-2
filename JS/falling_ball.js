@@ -15,7 +15,7 @@ let objectInterval;
 let basketPosition = 125; // Starts at the middle of the game area
 let isGameOver = false; // Flag to check if the game is over
 
-async function saveGameResult(isWin) {
+async function saveGameResult() {
     if (!userData) {
         console.error("User data not found. Cannot save game result.");
         return;
@@ -23,6 +23,8 @@ async function saveGameResult(isWin) {
 
     // Track wins
       const updatedWins = userData.activities["Falling Ball"].wins + score;
+      console.log(userData.activities["Falling Ball"].wins );
+      console.log(score);
       const updatedPlayed = userData.activities["Falling Ball"].played + 1;
       await updateUser(username, { 
         activities: {
@@ -37,7 +39,7 @@ async function saveGameResult(isWin) {
       // Check for achievement
       //const winRate = userData.activities["Falling Ball"].wins / userData.activities["Falling Ball"].played;
       if (userData.activities["Falling Ball"].played >=10 && 
-        score >= 10+userData.activities["Falling Ball"].played && !userData.achievements.includes("Falling Ball Master")
+        score >= 7 + userData.activities["Falling Ball"].played && !userData.achievements.includes("Falling Ball Master")
       ) {
         const updatedAchievements = [...userData.achievements, "Falling Ball Master"]; 
         await updateUser(username, { achievements: updatedAchievements});

@@ -13,7 +13,7 @@ async function loadUserData() {
 
 //Initialize users data in Local Data
 export async function initializeUsers() {
-    await loadUserData();
+     await loadUserData();
 }
 
 
