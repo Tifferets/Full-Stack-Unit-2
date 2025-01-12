@@ -1,5 +1,5 @@
 // Import user data functions from users.js
-import { updateUser, searchUser, displayLeaderboard } from './users.js';
+import { updateUser, searchUser, displayLeaderboard, showNotification } from './users.js';
 
 const username = sessionStorage.getItem('username');
 const basket = document.getElementById("basket");
@@ -41,13 +41,12 @@ async function saveGameResult() {
     });
 
       // Check for achievement
-      //const winRate = userData.activities["Falling Ball"].wins / userData.activities["Falling Ball"].played;
       if (userData.activities["Falling Ball"].played >=10 && 
         score >= 5 + userData.activities["Falling Ball"].played && !userData.achievements.includes("Falling Ball Master")
       ) {
         const updatedAchievements = [...userData.achievements, "Falling Ball Master"]; 
         await updateUser(username, { achievements: updatedAchievements});
-        alert("Congratulations! You've unlocked the 'Falling Ball Master' achievement!");
+        showNotification("Congratulations! You've unlocked the 'Tic Tac Toe Master' achievement!");
       }
 
       // Remove "Falling Ball Master" achievement if win rate falls below 0.75
@@ -56,7 +55,7 @@ async function saveGameResult() {
         ) {
           const updatedAchievements = userData.achievements.filter(achievement => achievement !== "Falling Ball Master");
           await updateUser(username, { achievements: updatedAchievements }); 
-          alert("Oh no! Your win rate has dropped. The 'Falling Ball Master' achievement has been withdrawn. Keep playing to earn it back!");
+          showNotification("Oh no! Your win rate has dropped. The 'Tic Tac Toe Master' achievement has been withdrawn. Keep playing to earn it back!", "error");
         }
 }
 
