@@ -39,7 +39,7 @@ async function saveGameResult() {
       // Check for achievement
       //const winRate = userData.activities["Falling Ball"].wins / userData.activities["Falling Ball"].played;
       if (userData.activities["Falling Ball"].played >=10 && 
-        score >= 7 + userData.activities["Falling Ball"].played && !userData.achievements.includes("Falling Ball Master")
+        score >= 5 + userData.activities["Falling Ball"].played && !userData.achievements.includes("Falling Ball Master")
       ) {
         const updatedAchievements = [...userData.achievements, "Falling Ball Master"]; 
         await updateUser(username, { achievements: updatedAchievements});
@@ -47,7 +47,7 @@ async function saveGameResult() {
       }
 
       // Remove "Falling Ball Master" achievement if win rate falls below 0.75
-        else if (userData.activities["Falling Ball"].played+ 10 <= score && 
+        else if (score <= 5 + userData.activities["Falling Ball"].played  && 
           userData.achievements.includes("Falling Ball Master")
         ) {
           const updatedAchievements = userData.achievements.filter(achievement => achievement !== "Falling Ball Master");
