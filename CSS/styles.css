@@ -3,7 +3,6 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   min-height: 100vh;
   /* Set the background image */
   background-image: url('../IMG/game-background.png'); 
@@ -76,7 +75,13 @@ input[type="password"] {
   cursor: pointer;
   width: 100%; 
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+.btn:hover {
+  transform: scale(1.05); 
+  background-color: #3c4bb1; 
+  text-decoration: none; 
 }
 
 
