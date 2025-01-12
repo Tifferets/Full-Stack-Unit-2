@@ -27,8 +27,6 @@ async function saveGameResult() {
 
     // Track wins
       const updatedWins = userData.activities["Falling Ball"].wins + score;
-      console.log(userData.activities["Falling Ball"].wins );
-      console.log(score);
       const updatedPlayed = userData.activities["Falling Ball"].played + 1;
       await updateUser(username, { 
         activities: {
@@ -114,38 +112,54 @@ function moveBasket(event) {
 }
 
 async function startGame() {
-    userData = await searchUser(username); // Load user data before creating board
-    console.log(userData);
+  userData = await searchUser(username); // Load user data before creating board
+  console.log(userData);
 
-    score = 0; // Reset score
-    objectSpeed = 3; // Reset object speed
-    basketPosition = 125; // Reset basket position
-    scoreElement.textContent = score;
-    resetObject();
-    gameOverMessage.style.display = "none"; // Hide the game over message
-    isGameOver = false; // Reset game over flag
-    objectInterval = setInterval(moveObject, 20);
-    document.addEventListener("keydown", moveBasket);
+  score = 0; // Reset score
+  objectSpeed = 3; // Reset object speed
+  basketPosition = 125; // Reset basket position
+  scoreElement.textContent = score;
 
-    // Display the leaderboard (ensure the function is correctly implemented)
-    if (typeof displayLeaderboard === "function") {
-        await displayLeaderboard("Falling Ball");
-    } else {
-        console.error("displayLeaderboard function is not defined");
-    }
+  // Show the score label
+  document.getElementById("scoreLabel").style.display = "inline";
+  scoreElement.style.display = "inline";
+  resetObject();
+  gameOverMessage.style.display = "none"; // Hide the game over message
+  isGameOver = false; // Reset game over flag
+  objectInterval = setInterval(moveObject, 20);
+  document.addEventListener("keydown", moveBasket);
+
+  // Display the leaderboard (ensure the function is correctly implemented)
+  if (typeof displayLeaderboard === "function") {
+      await displayLeaderboard("Falling Ball");
+  } else {
+      console.error("displayLeaderboard function is not defined");
+  }
 }
+
+
 
 async function stopGame() {
-    clearInterval(objectInterval);
-    isGameOver = true; // Set game over flag to true
-    // Update game over message
-    gameOverMessage.style.display = "block";
-    gameOverMessage.textContent = `Game Over! Your score is: ${score}`;
-    // Save the game result
-    await saveGameResult();
-    // Update leaderboard
-    await displayLeaderboard("Falling Ball");
+  clearInterval(objectInterval);
+  isGameOver = true; // Set game over flag to true
+
+  // Hide the score label (but keep the score visible)
+  document.getElementById("scoreLabel").style.display = "none";
+  scoreElement.style.display="none";
+  
+  // Update game over message
+  gameOverMessage.style.display = "block";
+  gameOverMessage.textContent = `Game Over! Your score is: ${score}`;
+
+  // Save the game result
+  await saveGameResult();
+
+  // Update leaderboard
+  await displayLeaderboard("Falling Ball");
 }
+
+
+
 
 // Reset the game
 function resetGame() {
